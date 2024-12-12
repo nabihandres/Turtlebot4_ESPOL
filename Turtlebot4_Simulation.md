@@ -1,4 +1,4 @@
-# TurtleBot4 - Simulation
+![image](https://github.com/user-attachments/assets/7bebb39a-43b7-4572-b93c-b29932f091e9)![image](https://github.com/user-attachments/assets/c652f216-31e0-49de-b80c-8c848db2937c)# TurtleBot4 - Simulation
 This tutorial is to help how to know to simulate Turtlebot 4 
 
 ## 0. Content
@@ -130,7 +130,8 @@ we have to know what nodes are actives when the launch file is running.
 ```bash
 ros2 topic list
 ```
-![image](https://github.com/user-attachments/assets/f015a6dc-4045-42e1-9178-3ebef064387f)
+
+![image](https://github.com/user-attachments/assets/1edfeeef-fa6b-410c-90c8-4a9b3401773f)
 
 
 as can be seen in the image, we are going to use the node /cmd_vel to drive the turtlebot4.
@@ -139,14 +140,17 @@ With this we can run the next code in the terminal, always the launch file shoul
 ros2 topic pub /cmd_vel geometry_msgs/Twist '{linear: {x: 0.7 , y: 0.0, z: 0.0}, angular: {x: 0.0, y: 0.0, z: 0.0}}'
 ```
 you have to change only the linear in x and angular in z. 
-![Screenshot from 2024-02-29 11-30-11](https://github.com/nabihandres/COOP_tutorials/assets/93724428/8cf4e398-d1bc-4ab5-bf57-73a89dff4024)
-![Captura desde 2024-03-25 11-13-35](https://github.com/nabihandres/COOP_tutorials/assets/93724428/9a7a80d3-8151-48d8-8d07-98891768c3eb)
+![image](https://github.com/user-attachments/assets/1223d0d9-85ed-4184-848f-e594f7e05a5b)
+
+![image](https://github.com/user-attachments/assets/adaeda72-a43d-4559-bb4e-c3af56896915)
+
 
 
 
 ## Ignition GUI Plugins
 In this case is so different and easier than terminal form, we have to set a velocity linear and velocity angular in interface. and then we have to press play, and the last we have to press the arrows in the direction we want our robot to move.
-![Captura desde 2024-03-25 11-15-22](https://github.com/nabihandres/COOP_tutorials/assets/93724428/9e4d1a35-b18f-4b71-a9c8-f0b1a4fc946c)
+![image](https://github.com/user-attachments/assets/1add8455-0e4c-4968-aadc-be69617a078d)
+
 
 
 ## 3. Turtlebot4 in rviz2. 
@@ -180,7 +184,8 @@ With the next command we can see the robot in rviz 2.
 ```bash
 ros2 launch turtlebot4_viz view_robot.launch.py
 ```
-![Captura de pantalla de 2024-02-22 15-02-35](https://github.com/nabihandres/COOP_tutorials/assets/93724428/f9b3af4b-e170-41cb-8148-6b90400a7273)
+![image](https://github.com/user-attachments/assets/14ae4efe-cfcc-40e6-a25e-d10d03946519)
+
 
 ## View Model 
 To inspect the model :
@@ -188,9 +193,11 @@ To inspect the model :
 ros2 launch turtlebot4_viz view_model.launch.py
 ```
 Standard
-![Captura de pantalla de 2024-02-23 08-37-01](https://github.com/nabihandres/COOP_tutorials/assets/93724428/85da8040-484c-4f98-9e42-697aeace0157)
+![image](https://github.com/user-attachments/assets/ab98acdf-067a-4309-bf24-064a5d08898d)
+
 Lite:
-![Captura de pantalla de 2024-02-23 09-04-50](https://github.com/nabihandres/COOP_tutorials/assets/93724428/c8a56b12-3fb1-499d-87c5-498189ecbacb)
+![image](https://github.com/user-attachments/assets/86816512-ed3b-426a-abdf-60be49017039)
+
 
 __Note important__
 
@@ -204,7 +211,8 @@ Rqt_graph displays a graph of the active nodes in your ROS 2 system. This plugin
 ros2 run rqt_graph rqt_graph
 ```
 for example when run the launch on Ignition Gazebo, we can see the next active nodes. 
-![Captura desde 2024-03-25 17-54-35](https://github.com/nabihandres/COOP_tutorials/assets/93724428/764cb55f-81ad-4501-9b15-39ef501cccec)
+![image](https://github.com/user-attachments/assets/5d35b069-e4d6-4f5e-a0cc-d15487970735)
+
 
 ## 4. How to visualize the Lidar in Gazebo 
 __Note Important__   
@@ -220,16 +228,21 @@ First, we need to run the simulation, in this case, launch the ignition.launch.p
 ros2 launch turtlebot4_ignition_bringup ignition.launch.py 
 ```
 Select the three points at the top right
-![Captura de pantalla de 2024-03-18 17-28-38](https://github.com/nabihandres/COOP_tutorials/assets/93724428/be44eb58-197d-420e-8b50-68bce5fe2e82)
+![image](https://github.com/user-attachments/assets/eff8883d-6335-456b-a504-d1508261bc9e)
+
 
 Start typing to find visualize lidar and select it
-![Captura de pantalla de 2024-03-18 17-16-11](https://github.com/nabihandres/COOP_tutorials/assets/93724428/ff39f814-c3d8-43fd-93d9-4ef23004f116)
+![image](https://github.com/user-attachments/assets/36a81193-b1a7-4bfa-a9c3-6878b78d0b25)
+
 
 
 Scroll down until you find the Visualize Lidar section. Click on the refresh button and select the correct lidar that you want to visualize from the drop down.
-![Captura de pantalla de 2024-03-18 17-16-23](https://github.com/nabihandres/COOP_tutorials/assets/93724428/0e7d017b-88f5-40d2-bd38-4990d5157d6e)
-you have tu press the refresh. 
-![Captura de pantalla de 2024-03-18 17-16-57](https://github.com/nabihandres/COOP_tutorials/assets/93724428/25297e9a-abae-4f1c-a74c-7bf88ec7e771)
+![image](https://github.com/user-attachments/assets/d0cd6f7c-5eeb-4344-bd08-9a0dbef23a03)
+
+you have to press the refresh. 
+
+![image](https://github.com/user-attachments/assets/46140f70-8192-433b-b693-107f8fe42254)
+
 
 If you don't see the lidar, ensure that your simulation is playing (should see a pause symbol in the bottom left).  
 
@@ -237,15 +250,19 @@ If you don't see the lidar, ensure that your simulation is playing (should see a
 We have to modify the parameter "r_max" in the urdf of rplidar(rplidar.urdf.xacro in the package named turtlebot4_description. 
 For example in the next picture the r_max sets in the 1.0 m:
 
-![Captura desde 2024-04-03 21-42-35](https://github.com/nabihandres/COOP_tutorials/assets/93724428/c4670a47-b3dc-41f8-9088-284517758887)
+![image](https://github.com/user-attachments/assets/ccea6278-722a-4e86-b5a5-5c5f2ac237f1)
 
-![Captura desde 2024-04-03 21-42-23](https://github.com/nabihandres/COOP_tutorials/assets/93724428/acdfe816-efd6-4394-bfee-1b57ea1113ae)
+
+![image](https://github.com/user-attachments/assets/7024d932-0fb5-4854-afca-dfc6b6fe0f34)
+
 
 In this picture the r_max sets in the 12.0 m :
 
-![Captura desde 2024-04-03 21-42-35](https://github.com/nabihandres/COOP_tutorials/assets/93724428/0489804d-33f9-43e2-81b1-153f408bbc12)
+![image](https://github.com/user-attachments/assets/f2f441c1-2e47-4882-9e6a-7a3bb4926853)
 
-![Captura desde 2024-04-03 21-43-43](https://github.com/nabihandres/COOP_tutorials/assets/93724428/429b38a6-23d6-4d35-933b-8b3194effb8d)
+
+![image](https://github.com/user-attachments/assets/b6c6040a-f6f4-434b-abeb-fd4a0319ff12)
+
 
 ## 5. Generating a map using the slam_toolbox package:
 we will be mapping an area by driving the TurtleBot 4 around and using SLAM.The creation of the map in real time using the slam_toolbox package, built by default in TurtleBot 4.
