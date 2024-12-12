@@ -399,11 +399,7 @@ continue, second nav2 goal.
 
 ## Video 
 
-
-
-
-
-https://github.com/user-attachments/assets/2f372f85-9f2b-4f17-b7cb-d6b5e45594b6
+https://github.com/nabihandres/Turtlebot4_ESPOL/blob/main/images_videos/navigation.mp4
 
 
 
