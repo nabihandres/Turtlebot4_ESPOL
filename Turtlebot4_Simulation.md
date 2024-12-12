@@ -112,7 +112,7 @@ Default TurtleBot 4 launch is the standard:
 cd turtlebot4_ws
 ros2 launch turtlebot4_ignition_bringup turtlebot4_ignition.launch.py world:=depot
 ```
-![image](https://github.com/user-attachments/assets/c6c6887b-010e-48a3-aa83-5f005eeaa6e5)
+![image](https://github.com/user-attachments/assets/1e03f358-30c3-4de3-ac50-3953ad98efcb)
 
 
 TurtleBot 4 Lite launch:   
@@ -120,7 +120,8 @@ TurtleBot 4 Lite launch:
 cd turtlebot4_ws
 ros2 launch turtlebot4_ignition_bringup turtlebot4_ignition.launch.py world:=depot model:=lite
 ```
-![image](https://github.com/user-attachments/assets/1e03f358-30c3-4de3-ac50-3953ad98efcb)
+![image](https://github.com/user-attachments/assets/c43e7a5d-0677-429c-9043-9d3ceb49544c)
+
 
 
 
