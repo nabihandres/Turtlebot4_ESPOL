@@ -1,1 +1,377 @@
-sdasdas
+# TurtleBot4 - Simulation
+This tutorial is to help how to know to simulate Turtlebot 4 
+
+## 0. Content
+  1. Install simulation packages.
+  2. Launch Simulation on the scenaries warehouse,Depot and maze. 
+  3. Turtlebot4 in rviz2.
+  4. Visualize Rplidar in Ignition Gazebo. 
+  5. Generating a map (Slam_toolbox)
+  6. Navigation(Nav2)
+  7. References
+
+## Prerequisites:
+   Ros 2 Humble and  all the necessary packages related to the simulation of turtlebot4 that are downloaded while the tutorial is being carried out. 
+  
+  
+Here we are going to install everything about turtlebot4.
+## 1. Install simulation packages
+The turtlebot4_simulator metapackage contains packages used to simulate the TurtleBot 4 in Ignition Gazebo.
+Please follow the steps. 
+we need to Install useful development tools with next code:
+```bash
+sudo apt install ros-dev-tools
+```
+## Install Igntion Gazebo. 
+```bash
+sudo apt-get update && sudo apt-get install wget
+sudo sh -c 'echo "deb http://packages.osrfoundation.org/gazebo/ubuntu-stable `lsb_release -cs` main" > /etc/apt/sources.list.d/gazebo-stable.list'
+wget http://packages.osrfoundation.org/gazebo.key -O - | sudo apt-key add -
+sudo apt-get update && sudo apt-get install ignition-fortress
+```
+## Install Debian package. 
+```bash
+sudo apt update
+sudo apt install ros-humble-turtlebot4-simulator
+```
+
+The installation of the package ros-humble-turtlebot4-simulator is necessary if you want to simulate a TurtleBot 4 robot on your system. This package contains the    
+necessary files and tools to simulate the TurtleBot 4 in the Ignition Gazebo simulation environment, which is a popular simulation platform used in robotics.     
+   
+## Source installation:
+To manually install this metapackage from source, clone the git repository:
+```bash
+mkdir -p ~/turtlebot4_ws/src  
+cd ~/turtlebot4_ws/src
+git clone https://github.com/turtlebot/turtlebot4_simulator.git -b humble
+```
+## Install dependencies:
+```bash
+cd ~/turtlebot4_ws
+rosdep install --from-path src -yi
+```
+## Build the packages:
+```bash
+source /opt/ros/humble/setup.bash
+colcon build --symlink-install
+```
+
+## 2. Launch Simulation in world warehouse.
+__Note important__ 
+When we run the simulation for the first time we have an error related to "Requesting list of worlds". in this link we can find more information about it, https://github.com/gazebosim/gz-sim/issues/38
+To avoid an error with "Requesting list of worlds", execute the following command:        
+```bash
+export IGN_IP=127.0.0.1
+```
+This command sets the IGN_IP environment variable to 127.0.0.1, resolving the "Requesting list of worlds" issue. Make sure to run this command before launching the
+simulation.   
+
+we launch in the two models robot standard and lite. 
+The turtlebot4_ignition.launch.py launch file has several launch configurations that allow the user to customize the simulation.
+This world for default is warehouse.
+Default TurtleBot 4 launch is the standard:
+```bash
+cd turtlebot4_ws    
+ros2 launch turtlebot4_ignition_bringup turtlebot4_ignition.launch.py
+```
+![Screenshot from 2024-03-21 14-18-14](https://github.com/nabihandres/COOP_tutorials/assets/93724428/30e5be42-1343-43a9-9534-4062a703c108)
+
+
+TurtleBot 4 Lite launch:
+```bash
+ros2 launch turtlebot4_ignition_bringup turtlebot4_ignition.launch.py model:=lite
+```
+![Screenshot from 2024-03-21 14-19-17](https://github.com/nabihandres/COOP_tutorials/assets/93724428/1df75a25-dc3e-45e0-8a8c-336dd989701a)
+
+
+## 2.1 Launch Simulation in the world maze:
+Here, we are going to run the launch of turtlebot4_ignition.launch.py  but in the world maze. 
+Default TurtleBot 4 launch is the standard:       
+```bash
+cd turtlebot4_ws
+ros2 launch turtlebot4_ignition_bringup turtlebot4_ignition.launch.py world:=maze
+```
+![Screenshot from 2024-03-21 14-20-55](https://github.com/nabihandres/COOP_tutorials/assets/93724428/75954ea8-608e-465e-85f8-74edbf1621f3)
+
+TurtleBot 4 Lite launch:   
+```bash
+cd turtlebot4_ws
+ros2 launch turtlebot4_ignition_bringup turtlebot4_ignition.launch.py world:=maze model:=lite
+```
+![Captura desde 2024-04-03 21-44-54](https://github.com/nabihandres/COOP_tutorials/assets/93724428/9dd6eb99-5ef7-457a-927d-142e24f89eab)
+
+## 2.2 Launch Simulation in the world depot:
+Here, we are going to run the launch of turtlebot4_ignition.launch.py in the world depot:
+Default TurtleBot 4 launch is the standard:   
+```bash
+cd turtlebot4_ws
+ros2 launch turtlebot4_ignition_bringup turtlebot4_ignition.launch.py world:=depot
+```
+![Captura desde 2024-03-26 23-50-15](https://github.com/nabihandres/COOP_tutorials/assets/93724428/e3428809-0968-4b91-a9eb-3e249e1f7846)
+
+TurtleBot 4 Lite launch:   
+```bash
+cd turtlebot4_ws
+ros2 launch turtlebot4_ignition_bringup turtlebot4_ignition.launch.py world:=depot model:=lite
+```
+![Captura desde 2024-04-03 21-45-39](https://github.com/nabihandres/COOP_tutorials/assets/93724428/b4b6beb3-dd1a-4f14-aaff-73506dc6ffcf)
+
+
+## Note important 
+we have some of forms to drive the turtlebot 4, so here we are going to explain two forms the terminal forms and Interface of Gui.
+##  Terminal form 
+we have to know what nodes are actives when the launch file is running. 
+```bash
+ros2 topic list
+```
+![Captura desde 2024-03-25 11-12-38](https://github.com/nabihandres/COOP_tutorials/assets/93724428/7055bfc9-44da-47af-9bce-693d3af3292f)
+
+as can be seen in the image, we are going to use the node /cmd_vel to drive the turtlebot4.
+With this we can run the next code in the terminal, always the launch file should be running in our case the ingnition.launch.py 
+```bash 
+ros2 topic pub /cmd_vel geometry_msgs/Twist '{linear: {x: 0.7 , y: 0.0, z: 0.0}, angular: {x: 0.0, y: 0.0, z: 0.0}}'
+```
+you have to change only the linear in x and angular in z. 
+![Screenshot from 2024-02-29 11-30-11](https://github.com/nabihandres/COOP_tutorials/assets/93724428/8cf4e398-d1bc-4ab5-bf57-73a89dff4024)
+![Captura desde 2024-03-25 11-13-35](https://github.com/nabihandres/COOP_tutorials/assets/93724428/9a7a80d3-8151-48d8-8d07-98891768c3eb)
+
+
+
+## Ignition GUI Plugins
+In this case is so different and easier than terminal form, we have to set a velocity linear and velocity angular in interface. and then we have to press play, and the last we have to press the arrows in the direction we want our robot to move.
+![Captura desde 2024-03-25 11-15-22](https://github.com/nabihandres/COOP_tutorials/assets/93724428/9e4d1a35-b18f-4b71-a9c8-f0b1a4fc946c)
+
+
+## 3. Turtlebot4 in rviz2. 
+
+To view the Turtlebot4 in rviz2, we need to install another package called "turtlebot4_desktop", so let's go ahead and do that.
+
+## Install Debian package. 
+```bash
+sudo apt update
+sudo apt install ros-humble-turtlebot4-desktop
+```
+## Source installation:
+To manually install this metapackage from source, clone the git repository:
+```bash
+cd ~/turtlebot4_ws/src
+git clone https://github.com/turtlebot/turtlebot4_desktop.git -b humble
+```
+## Install dependencies:
+```bash
+cd ~/turtlebot4_ws
+rosdep install --from-path src -yi
+```
+## Build the packages:
+```bash
+source /opt/ros/humble/setup.bash
+colcon build --symlink-install
+```
+
+## View robot:
+With the next command we can see the robot in rviz 2. 
+```bash
+ros2 launch turtlebot4_viz view_robot.launch.py
+```
+![Captura de pantalla de 2024-02-22 15-02-35](https://github.com/nabihandres/COOP_tutorials/assets/93724428/f9b3af4b-e170-41cb-8148-6b90400a7273)
+
+## View Model 
+To inspect the model :
+```bash
+ros2 launch turtlebot4_viz view_model.launch.py
+```
+Standard
+![Captura de pantalla de 2024-02-23 08-37-01](https://github.com/nabihandres/COOP_tutorials/assets/93724428/85da8040-484c-4f98-9e42-697aeace0157)
+Lite:
+![Captura de pantalla de 2024-02-23 09-04-50](https://github.com/nabihandres/COOP_tutorials/assets/93724428/c8a56b12-3fb1-499d-87c5-498189ecbacb)
+
+__Note important__
+
+As you can see, there is an error in the images in the part of the robot model in rviz, this was corrected by changing to ros humble since in ros galactic there were outdated packages that were not going to be updated. Because ros galactic is already in its final stage.
+
+
+
+## Rqt of Turtlebot4 
+Rqt_graph displays a graph of the active nodes in your ROS 2 system. This plugin allows you to visualize the connections between nodes and their associated topics, services, and actions.
+```bash
+ros2 run rqt_graph rqt_graph
+```
+for example when run the launch on Ignition Gazebo, we can see the next active nodes. 
+![Captura desde 2024-03-25 17-54-35](https://github.com/nabihandres/COOP_tutorials/assets/93724428/764cb55f-81ad-4501-9b15-39ef501cccec)
+
+## 4. How to visualize the Lidar in Gazebo 
+__Note Important__   
+
+Here's what you need to do if you don't have a GPU because ignition gazebo support the gpu lidar which use ign-rendering and detect visuals in the scene  and the LiDAR is configured to work with GPU. Open the terminal and type the following commands:
+```bash
+export LIBGL_ALWAYS_SOFTWARE=true
+```
+This command forces the LiDAR to work with the CPU instead of the GPU for rendering. Make sure to run this command before launching the simulation to ensure that the LiDAR operates correctly without a dedicated GPU.Read more about it in the next link https://github.com/gazebosim/gz-sensors/issues/26 and https://robotics.stackexchange.com/questions/24883/turtlebot-4-simulation-rplidar-not-working.    
+Otherwise our rplidar sensor will not detect anything.      
+First, we need to run the simulation, in this case, launch the ignition.launch.py  
+```bash
+ros2 launch turtlebot4_ignition_bringup ignition.launch.py 
+```
+Select the three points at the top right
+![Captura de pantalla de 2024-03-18 17-28-38](https://github.com/nabihandres/COOP_tutorials/assets/93724428/be44eb58-197d-420e-8b50-68bce5fe2e82)
+
+Start typing to find visualize lidar and select it
+![Captura de pantalla de 2024-03-18 17-16-11](https://github.com/nabihandres/COOP_tutorials/assets/93724428/ff39f814-c3d8-43fd-93d9-4ef23004f116)
+
+
+Scroll down until you find the Visualize Lidar section. Click on the refresh button and select the correct lidar that you want to visualize from the drop down.
+![Captura de pantalla de 2024-03-18 17-16-23](https://github.com/nabihandres/COOP_tutorials/assets/93724428/0e7d017b-88f5-40d2-bd38-4990d5157d6e)
+you have tu press the refresh. 
+![Captura de pantalla de 2024-03-18 17-16-57](https://github.com/nabihandres/COOP_tutorials/assets/93724428/25297e9a-abae-4f1c-a74c-7bf88ec7e771)
+
+If you don't see the lidar, ensure that your simulation is playing (should see a pause symbol in the bottom left).  
+
+## how to change the range of the rplidar?
+We have to modify the parameter "r_max" in the urdf of rplidar(rplidar.urdf.xacro in the package named turtlebot4_description. 
+For example in the next picture the r_max sets in the 1.0 m:
+
+![Captura desde 2024-04-03 21-42-35](https://github.com/nabihandres/COOP_tutorials/assets/93724428/c4670a47-b3dc-41f8-9088-284517758887)
+
+![Captura desde 2024-04-03 21-42-23](https://github.com/nabihandres/COOP_tutorials/assets/93724428/acdfe816-efd6-4394-bfee-1b57ea1113ae)
+
+In this picture the r_max sets in the 12.0 m :
+
+![Captura desde 2024-04-03 21-42-35](https://github.com/nabihandres/COOP_tutorials/assets/93724428/0489804d-33f9-43e2-81b1-153f408bbc12)
+
+![Captura desde 2024-04-03 21-43-43](https://github.com/nabihandres/COOP_tutorials/assets/93724428/429b38a6-23d6-4d35-933b-8b3194effb8d)
+
+## 5. Generating a map using the slam_toolbox package:
+we will be mapping an area by driving the TurtleBot 4 around and using SLAM.The creation of the map in real time using the slam_toolbox package, built by default in TurtleBot 4.
+
+
+## First, install turtlebot4_navigation:
+```bash
+sudo apt install ros-humble-turtlebot4-navigation
+```
+## Then run SLAM. It is recommended to run synchronous SLAM on a remote PC to get a higher resolution map.
+```bash
+
+ros2 launch turtlebot4_navigation slam.launch.py
+```
+## Option(Asynchronous SLAM can be used as well.)
+```bash
+
+ros2 launch turtlebot4_navigation slam.launch.py sync:=false
+```
+## Launch Rviz2
+To visualise the map, launch Rviz2 with the view_robot launch file.
+```bash
+ros2 launch turtlebot4_viz view_robot.launch.py
+```
+![Captura de pantalla de 2024-03-12 12-17-02](https://github.com/nabihandres/COOP_tutorials/assets/93724428/666023f5-78cb-4c04-a31a-49d8afea8aa3)
+
+
+when you launch rviz2 you must launch the Ignition gazebo. Because in this case is simulated. 
+```bash
+ros2 launch turtlebot4_ignition_bringup turtlebot4_ignition.launch.py---humble
+```
+![Captura de pantalla de 2024-02-28 11-42-50](https://github.com/nabihandres/COOP_tutorials/assets/93724428/4ed71a48-293b-4247-8292-8534123e3cab)
+
+
+## Save the map    
+
+Once you are happy with your map, you can save it with the following command:     
+```bash
+ros2 service call /slam_toolbox/save_map slam_toolbox/srv/SaveMap "name:
+  data: 'map_name'"
+```
+## Video 
+
+
+https://github.com/nabihandres/COOP_tutorials/assets/93724428/980b1685-7f51-43bd-a4a5-f91947a7ee49
+
+
+
+## 6 .Navigation 
+This tutorial will cover various methods of navigating with the TurtleBot 4 and Nav2. 
+
+SLAM or Localization. SLAM allows us to generate the map as we navigate, while localization requires that a map already exists.
+
+__SLAM__
+
+SLAM is useful for generating a new map, or navigating in unknown or dynamic environments. It updates the map as it detects and changes, but cannot see areas of the environment that it has not discovered yet.
+
+__Localization__
+
+Localization uses an existing map along with live odometry and laserscan data to figure out the position of the robot on the given map. It does not update the map if any changes have been made to the environment, but we can still avoid new obstacles when navigating. Because the map doesn't change, we can get more repeatable navigation results.
+
+For this tutorial, we will be using localization to navigate on a map generated with SLAM.   
+Nav2
+
+The TurtleBot 4 uses the Nav2 stack for navigation.
+As we are using the simulator, we need to run this command in the terminal. 
+```bash 
+ros2 launch turtlebot4_ignition_bringup turtlebot4_ignition.launch.py nav2:=true slam:=false localization:=true rviz:=true
+```
+We will explain what happens with each argument that is launched in that line:
+__nav2:=true__ : This will launch the nav2 navigation system, which will have some configurations but for global planner it will use A* or dijkstra algorithm, for local planner it uses what is dwa.
+__localization:=true__ : This will launch the robot localization system that uses the amcl package that implements a localization algorithm using a particle filter.
+__slam__ : This is set false, it will not use the slam_toolbox package which uses a modification of the OpenKarto library is a set of libraries and tools that has become the ROS 2 standard, so it is installed by default in TrutleBot 4. It has loop-closing and is based on graph optimization., If this is true it means that it does not have a map created, so it will navigate and map it for the first time.
+This will launch the simulation in the default warehouse world and will use the existing warehouse.yaml file for the map.
+
+To launch a different supported world, see the simulation package for a list of supported worlds. You must pass the name of the chosen world and the path to the map file.
+
+For example:
+```bash 
+ros2 launch turtlebot4_ignition_bringup turtlebot4_ignition.launch.py nav2:=true slam:=false localization:=true \
+rviz:=true world:=depot map:=/opt/ros/humble/share/turtlebot4_navigation/maps/depot.yaml
+```
+## Interacting with Nav2
+
+In a new terminal launch Rviz so that you can view the map and interact with navigation:
+```bash
+ros2 launch turtlebot4_viz view_robot.launch.py
+```
+At the top of the Rviz window is the toolbar. You will notice that there are three navigation tools available to you.
+![WhatsApp Image 2024-03-05 at 11 08 07](https://github.com/nabihandres/COOP_tutorials/assets/93724428/e6f3f7a1-5279-483b-9033-45b96c669993)
+
+
+## 2D Pose Estimate
+
+The 2D Pose Estimate tool is used in localization to set the approximate initial pose of the robot on the map. This is required for the Nav2 stack to know where to start localizing from. Click on the tool, and then click and drag the arrow on the map to approximate the position and orientation of the robot.
+
+![Captura desde 2024-03-25 18-06-14](https://github.com/nabihandres/COOP_tutorials/assets/93724428/8c5f2fbf-5ad7-4173-922e-7e5e4bb8f885)
+
+
+## Publish Point
+
+The Publish Point tool allows you to click on a point on the map, and have the coordinates of that point published to the /clicked_point topic.
+
+Open a new terminal and call:
+```bash
+ros2 topic echo /clicked_point
+```
+Then, select the Publish Point tool and click on a point on the map. You should see the coordinates published in your terminal.
+
+![Captura desde 2024-03-25 18-06-47](https://github.com/nabihandres/COOP_tutorials/assets/93724428/cf619a7d-a127-4518-832e-43ff61e6afb0)
+![Captura desde 2024-03-25 18-06-57](https://github.com/nabihandres/COOP_tutorials/assets/93724428/b7773eff-5557-4a2a-ae3a-6da43ddeaac3)
+
+
+
+## Nav2 Goal
+
+The Nav2 Goal tool allows you to set a goal pose for the robot. The Nav2 stack will then plan a path to the goal pose and attempt to drive the robot there. Make sure to set the initial pose of the robot before you set a goal pose.
+
+![Captura desde 2024-03-25 18-07-30](https://github.com/nabihandres/COOP_tutorials/assets/93724428/cd50f77e-9cb1-4de1-b968-fc7a55bac54b)
+First Nav2 goal.
+![Captura desde 2024-03-25 18-10-56](https://github.com/nabihandres/COOP_tutorials/assets/93724428/f70d37fa-f27b-484e-892f-ebc9a9e16c11)
+continue, second nav2 goal. 
+![Captura desde 2024-03-25 18-12-50](https://github.com/nabihandres/COOP_tutorials/assets/93724428/60d0c515-d5f9-4c68-b842-10c67c42438e)
+
+
+## Video 
+
+
+https://github.com/nabihandres/COOP_tutorials/assets/93724428/bf4c4ac9-e80a-435d-884d-2e64455e1a58
+
+
+
+## 7 .References 
+https://turtlebot.github.io/turtlebot4-user-manual/overview/
+https://github.com/turtlebot/turtlebot4/issues
+https://docs.ros.org/en/galactic/index.html
