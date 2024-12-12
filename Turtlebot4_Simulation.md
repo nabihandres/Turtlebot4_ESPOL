@@ -1,4 +1,4 @@
-![image](https://github.com/user-attachments/assets/7bebb39a-43b7-4572-b93c-b29932f091e9)![image](https://github.com/user-attachments/assets/c652f216-31e0-49de-b80c-8c848db2937c)# TurtleBot4 - Simulation
+# TurtleBot4 - Simulation
 This tutorial is to help how to know to simulate Turtlebot 4 
 
 ## 0. Content
