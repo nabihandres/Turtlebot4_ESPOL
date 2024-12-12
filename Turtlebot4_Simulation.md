@@ -81,9 +81,9 @@ TurtleBot 4 Lite launch:
 ```bash
 ros2 launch turtlebot4_ignition_bringup turtlebot4_ignition.launch.py model:=lite
 ```
-![image](https://github.com/user-attachments/assets/69b63aad-3a5a-4771-b30f-da923870c6f3)
 
 
+![image](https://github.com/user-attachments/assets/5066d70b-aebf-41c0-b9ce-5f216755e077)
 
 
 ## 2.1 Launch Simulation in the world maze:
@@ -93,8 +93,8 @@ Default TurtleBot 4 launch is the standard:
 cd turtlebot4_ws
 ros2 launch turtlebot4_ignition_bringup turtlebot4_ignition.launch.py world:=maze
 ```
-![image](https://github.com/user-attachments/assets/5066d70b-aebf-41c0-b9ce-5f216755e077)
 
+![image](https://github.com/user-attachments/assets/69b63aad-3a5a-4771-b30f-da923870c6f3)
 
 
 TurtleBot 4 Lite launch:   
