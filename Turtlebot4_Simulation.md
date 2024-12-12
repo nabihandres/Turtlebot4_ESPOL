@@ -308,8 +308,9 @@ ros2 service call /slam_toolbox/save_map slam_toolbox/srv/SaveMap "name:
 ```
 ## Video 
 
+https://github.com/user-attachments/assets/bb17deda-5221-4067-817d-1ce7f774255c
 
-https://github.com/nabihandres/COOP_tutorials/assets/93724428/980b1685-7f51-43bd-a4a5-f91947a7ee49
+
 
 
 
@@ -354,14 +355,16 @@ In a new terminal launch Rviz so that you can view the map and interact with nav
 ros2 launch turtlebot4_viz view_robot.launch.py
 ```
 At the top of the Rviz window is the toolbar. You will notice that there are three navigation tools available to you.
-![WhatsApp Image 2024-03-05 at 11 08 07](https://github.com/nabihandres/COOP_tutorials/assets/93724428/e6f3f7a1-5279-483b-9033-45b96c669993)
+![image](https://github.com/user-attachments/assets/7fcbe5bb-1af4-42b9-9d21-9511c195cbc1)
+
 
 
 ## 2D Pose Estimate
 
 The 2D Pose Estimate tool is used in localization to set the approximate initial pose of the robot on the map. This is required for the Nav2 stack to know where to start localizing from. Click on the tool, and then click and drag the arrow on the map to approximate the position and orientation of the robot.
 
-![Captura desde 2024-03-25 18-06-14](https://github.com/nabihandres/COOP_tutorials/assets/93724428/8c5f2fbf-5ad7-4173-922e-7e5e4bb8f885)
+![image](https://github.com/user-attachments/assets/12615739-1cc7-4597-a4b3-0ad4132463a0)
+
 
 
 ## Publish Point
@@ -374,8 +377,9 @@ ros2 topic echo /clicked_point
 ```
 Then, select the Publish Point tool and click on a point on the map. You should see the coordinates published in your terminal.
 
-![Captura desde 2024-03-25 18-06-47](https://github.com/nabihandres/COOP_tutorials/assets/93724428/cf619a7d-a127-4518-832e-43ff61e6afb0)
-![Captura desde 2024-03-25 18-06-57](https://github.com/nabihandres/COOP_tutorials/assets/93724428/b7773eff-5557-4a2a-ae3a-6da43ddeaac3)
+![image](https://github.com/user-attachments/assets/da89a706-956f-4d3c-b48f-b3e8b634e8e8)
+
+![image](https://github.com/user-attachments/assets/e4dc4693-4b69-419f-8fe8-8b463d9f7a08)
 
 
 
@@ -383,17 +387,23 @@ Then, select the Publish Point tool and click on a point on the map. You should 
 
 The Nav2 Goal tool allows you to set a goal pose for the robot. The Nav2 stack will then plan a path to the goal pose and attempt to drive the robot there. Make sure to set the initial pose of the robot before you set a goal pose.
 
-![Captura desde 2024-03-25 18-07-30](https://github.com/nabihandres/COOP_tutorials/assets/93724428/cd50f77e-9cb1-4de1-b968-fc7a55bac54b)
+![image](https://github.com/user-attachments/assets/f2df078a-70ac-4695-a29f-74ffe2210798)
+
 First Nav2 goal.
-![Captura desde 2024-03-25 18-10-56](https://github.com/nabihandres/COOP_tutorials/assets/93724428/f70d37fa-f27b-484e-892f-ebc9a9e16c11)
+![image](https://github.com/user-attachments/assets/727cab61-e3e7-42c4-9cf0-d7d790fa3a51)
+
 continue, second nav2 goal. 
-![Captura desde 2024-03-25 18-12-50](https://github.com/nabihandres/COOP_tutorials/assets/93724428/60d0c515-d5f9-4c68-b842-10c67c42438e)
+![image](https://github.com/user-attachments/assets/ae503fff-6bc7-43b4-aa76-4506f3b3abdd)
+
 
 
 ## Video 
 
 
-https://github.com/nabihandres/COOP_tutorials/assets/93724428/bf4c4ac9-e80a-435d-884d-2e64455e1a58
+
+
+
+https://github.com/user-attachments/assets/2f372f85-9f2b-4f17-b7cb-d6b5e45594b6
 
 
 
