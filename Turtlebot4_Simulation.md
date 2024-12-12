@@ -74,14 +74,16 @@ Default TurtleBot 4 launch is the standard:
 cd turtlebot4_ws    
 ros2 launch turtlebot4_ignition_bringup turtlebot4_ignition.launch.py
 ```
-![Screenshot from 2024-03-21 14-18-14](https://github.com/nabihandres/COOP_tutorials/assets/93724428/30e5be42-1343-43a9-9534-4062a703c108)
+![image](https://github.com/user-attachments/assets/544d9bb6-f25f-4c7f-82b8-7f415c73c296)
+
 
 
 TurtleBot 4 Lite launch:
 ```bash
 ros2 launch turtlebot4_ignition_bringup turtlebot4_ignition.launch.py model:=lite
 ```
-![Screenshot from 2024-03-21 14-19-17](https://github.com/nabihandres/COOP_tutorials/assets/93724428/1df75a25-dc3e-45e0-8a8c-336dd989701a)
+![image](https://github.com/user-attachments/assets/297e95d5-93a8-4fa0-a0bc-1d551b6640f4)
+
 
 
 ## 2.1 Launch Simulation in the world maze:
@@ -91,14 +93,16 @@ Default TurtleBot 4 launch is the standard:
 cd turtlebot4_ws
 ros2 launch turtlebot4_ignition_bringup turtlebot4_ignition.launch.py world:=maze
 ```
-![Screenshot from 2024-03-21 14-20-55](https://github.com/nabihandres/COOP_tutorials/assets/93724428/75954ea8-608e-465e-85f8-74edbf1621f3)
+![image](https://github.com/user-attachments/assets/f29d7687-27c7-4c6d-a75b-6d279d09deb6)
+
 
 TurtleBot 4 Lite launch:   
 ```bash
 cd turtlebot4_ws
 ros2 launch turtlebot4_ignition_bringup turtlebot4_ignition.launch.py world:=maze model:=lite
 ```
-![Captura desde 2024-04-03 21-44-54](https://github.com/nabihandres/COOP_tutorials/assets/93724428/9dd6eb99-5ef7-457a-927d-142e24f89eab)
+![image](https://github.com/user-attachments/assets/873dbeef-d0e2-459d-ae7b-804b97005c9d)
+
 
 ## 2.2 Launch Simulation in the world depot:
 Here, we are going to run the launch of turtlebot4_ignition.launch.py in the world depot:
@@ -107,14 +111,16 @@ Default TurtleBot 4 launch is the standard:
 cd turtlebot4_ws
 ros2 launch turtlebot4_ignition_bringup turtlebot4_ignition.launch.py world:=depot
 ```
-![Captura desde 2024-03-26 23-50-15](https://github.com/nabihandres/COOP_tutorials/assets/93724428/e3428809-0968-4b91-a9eb-3e249e1f7846)
+![image](https://github.com/user-attachments/assets/c6c6887b-010e-48a3-aa83-5f005eeaa6e5)
+
 
 TurtleBot 4 Lite launch:   
 ```bash
 cd turtlebot4_ws
 ros2 launch turtlebot4_ignition_bringup turtlebot4_ignition.launch.py world:=depot model:=lite
 ```
-![Captura desde 2024-04-03 21-45-39](https://github.com/nabihandres/COOP_tutorials/assets/93724428/b4b6beb3-dd1a-4f14-aaff-73506dc6ffcf)
+![image](https://github.com/user-attachments/assets/1e03f358-30c3-4de3-ac50-3953ad98efcb)
+
 
 
 ## Note important 
@@ -124,7 +130,8 @@ we have to know what nodes are actives when the launch file is running.
 ```bash
 ros2 topic list
 ```
-![Captura desde 2024-03-25 11-12-38](https://github.com/nabihandres/COOP_tutorials/assets/93724428/7055bfc9-44da-47af-9bce-693d3af3292f)
+![image](https://github.com/user-attachments/assets/f015a6dc-4045-42e1-9178-3ebef064387f)
+
 
 as can be seen in the image, we are going to use the node /cmd_vel to drive the turtlebot4.
 With this we can run the next code in the terminal, always the launch file should be running in our case the ingnition.launch.py 
